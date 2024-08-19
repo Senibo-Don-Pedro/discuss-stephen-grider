@@ -1,8 +1,10 @@
 import TopicCreateForm from "@/components/topics/topic-create-form";
 import TopicList from "@/components/topics/topic-list";
 import { Divider } from "@nextui-org/react";
+import { auth } from "@/auth";
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
   return (
     <div className="grid grid-cols-4 gap-4 p-4">
       <div className="col-span-3">
