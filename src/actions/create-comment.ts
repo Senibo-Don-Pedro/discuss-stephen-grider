@@ -1,5 +1,18 @@
 "use server";
 
+import NextAuth from "next-auth";
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string;
+      name?: string | null;
+      email?: string | null;
+      image?: string | null;
+    };
+  }
+}
+
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { auth } from "@/auth";
@@ -41,6 +54,8 @@ export async function createComment(
       },
     };
   }
+
+  
 
   try {
     await db.comment.create({
